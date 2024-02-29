@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "583721058483",
+    "project_id": "cartopia-a1250",
+    "storage_bucket": "cartopia-a1250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583721058483:android:f5cefa9f108c49ff0db0c6",
+        "android_client_info": {
+          "package_name": "com.example.cartopia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARETfOv2VRyEzB31gGLd7dRIzwe6lGiWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
