@@ -3,6 +3,7 @@
 import 'package:cartopia/screens/auth-ui/sign-in-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import '../../controllers/google-sign-in-controller.dart';
 import '../../utils/app-constant.dart';
@@ -16,27 +17,20 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: AppConstant.appScendoryColor,
-        title: Text(
-          "Welcome to my app",
-          style: TextStyle(color: AppConstant.appTextColor),
-        ),
-      ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              child: Lottie.asset('assets/images/splash-icon.json'),
+            SizedBox(
+              width: Get.width,
+              height: Get.height / 1.5,
+              child: Lottie.asset('assets/images/splash.json'),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20.0),
+              margin: EdgeInsets.only(top: 0.0),
               child: Text(
-                "Happy Shopping",
-                style: TextStyle(
+                "Please select a sign in method",
+                style: GoogleFonts.poppins(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),

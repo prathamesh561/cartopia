@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 
 class AppConstant {
-  static String appMainName = 'Ecomm';
-  static String appPoweredBy = 'Powered By Techi4u';
-  static const appMainColor = Color(0xFFbf1b08);
-  static const appScendoryColor = Color(0xFF981206);
+  static String appMainName = 'Cartopia';
+  static const appMainColor = Color(0xFF30d5dc);
+  static const appScendoryColor = Color(0xFF003762);
+  static const appWhiteColor = Color(0xFFFFFFFF);
   static const appTextColor = Color(0xFFFBF5F4);
   static const appStatusBarColor = Color(0xFFFBF5F4);
 }
