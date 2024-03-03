@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_local_variable, file_names
 
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../controllers/forget-password-controller.dart';
@@ -24,22 +26,32 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppConstant.appScendoryColor,
-          centerTitle: true,
-          title: Text(
-            "Forget Password",
-            style: TextStyle(color: AppConstant.appTextColor),
-          ),
+        appBar: AppBarWidget(
+          title: "Forgot Password",
         ),
         body: Container(
           child: Column(
             children: [
               isKeyboardVisible
-                  ? Text("Welcome to my app")
+                  ? SizedBox(
+                      height: Get.height / 10,
+                      child: Center(
+                        child: Text(
+                          "Please input your email",
+                          style: GoogleFonts.poppins(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
                   : Column(
                       children: [
-                        Lottie.asset('assets/images/splash-icon.json'),
+                        SizedBox(
+                            width: Get.width,
+                            height: Get.height / 2.5,
+                            child: Lottie.asset(
+                                width: Get.width, 'assets/images/cart.json')),
                       ],
                     ),
               SizedBox(

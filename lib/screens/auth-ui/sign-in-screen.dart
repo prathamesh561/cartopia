@@ -5,10 +5,12 @@ import 'package:cartopia/screens/admin-panel/admin-main-screen.dart';
 import 'package:cartopia/screens/auth-ui/sign-up-screen.dart';
 import 'package:cartopia/screens/user-panel/main-screen.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../controllers/get-user-data-controller.dart';
@@ -32,22 +34,30 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppConstant.appScendoryColor,
-          centerTitle: true,
-          title: Text(
-            "Sign In",
-            style: TextStyle(color: AppConstant.appTextColor),
-          ),
-        ),
+        appBar: AppBarWidget(title: "Sign In"),
         body: Container(
           child: Column(
             children: [
               isKeyboardVisible
-                  ? Text("Welcome to my app")
+                  ? SizedBox(
+                      height: Get.height / 10,
+                      child: Center(
+                        child: Text(
+                          "Please input your credentials",
+                          style: GoogleFonts.poppins(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
                   : Column(
                       children: [
-                        Lottie.asset('assets/images/splash-icon.json'),
+                        SizedBox(
+                            width: Get.width,
+                            height: Get.height / 2.5,
+                            child: Lottie.asset(
+                                width: Get.width, 'assets/images/cart.json')),
                       ],
                     ),
               SizedBox(
@@ -112,7 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   child: Text(
                     "Forget Password?",
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: AppConstant.appScendoryColor,
                         fontWeight: FontWeight.bold),
                   ),
@@ -132,7 +142,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: TextButton(
                     child: Text(
                       "SIGN IN",
-                      style: TextStyle(color: AppConstant.appTextColor),
+                      style:
+                          GoogleFonts.poppins(color: AppConstant.appTextColor),
                     ),
                     onPressed: () async {
                       String email = userEmail.text.trim();
@@ -206,13 +217,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Text(
                     "Don't have an account? ",
-                    style: TextStyle(color: AppConstant.appScendoryColor),
+                    style: GoogleFonts.poppins(
+                        color: AppConstant.appScendoryColor),
                   ),
                   GestureDetector(
-                    onTap: () => Get.offAll(() => SignUpScreen()),
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => SignUpScreen())),
                     child: Text(
                       "Sign Up",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           color: AppConstant.appScendoryColor,
                           fontWeight: FontWeight.bold),
                     ),

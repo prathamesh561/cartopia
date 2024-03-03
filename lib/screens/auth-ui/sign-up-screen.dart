@@ -2,6 +2,7 @@
 
 import 'package:cartopia/screens/auth-ui/sign-in-screen.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -28,13 +29,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppConstant.appScendoryColor,
-          centerTitle: true,
-          title: Text(
-            "Sign Up",
-            style: TextStyle(color: AppConstant.appTextColor),
-          ),
+        appBar: AppBarWidget(
+          title: "Sign Up",
         ),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -47,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "Welcome to my app",
+                    "Please enter your details",
                     style: TextStyle(
                         color: AppConstant.appScendoryColor,
                         fontWeight: FontWeight.bold,
@@ -243,7 +239,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(color: AppConstant.appScendoryColor),
                     ),
                     GestureDetector(
-                      onTap: () => Get.offAll(() => SignInScreen()),
+                      onTap: () => Navigator.pop(context),
                       child: Text(
                         "Sign In",
                         style: TextStyle(

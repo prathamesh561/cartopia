@@ -17,6 +17,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppConstant.appWhiteColor,
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   label: Text(
                     "Sign in with google",
-                    style: TextStyle(color: AppConstant.appTextColor),
+                    style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                   ),
                   onPressed: () {
                     _googleSignInController.signInWithGoogle();
@@ -81,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   label: Text(
                     "Sign in with email",
-                    style: TextStyle(color: AppConstant.appTextColor),
+                    style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                   ),
                   onPressed: () {
                     Get.to(() => SignInScreen());
