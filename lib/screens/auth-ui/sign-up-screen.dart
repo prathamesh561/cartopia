@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/sign-up-controller.dart';
 
@@ -44,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignment: Alignment.center,
                   child: Text(
                     "Please enter your details",
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: AppConstant.appScendoryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0),
@@ -178,7 +179,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextButton(
                       child: Text(
                         "SIGN UP",
-                        style: TextStyle(color: AppConstant.appTextColor),
+                        style: GoogleFonts.poppins(
+                            color: AppConstant.appTextColor),
                       ),
                       onPressed: () async {
                         String name = username.text.trim();
@@ -236,13 +238,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     Text(
                       "Already have an account? ",
-                      style: TextStyle(color: AppConstant.appScendoryColor),
+                      style: GoogleFonts.poppins(
+                          color: AppConstant.appScendoryColor),
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Text(
                         "Sign In",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                             color: AppConstant.appScendoryColor,
                             fontWeight: FontWeight.bold),
                       ),

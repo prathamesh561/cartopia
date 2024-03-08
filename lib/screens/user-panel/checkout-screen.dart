@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/cart-price-controller.dart';
 import '../../controllers/get-customer-device-token-controller.dart';
@@ -142,8 +143,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           children: [
             Obx(
               () => Text(
-                " Total ${productPriceController.totalPrice.value.toStringAsFixed(1)} : PKR",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                " Total  ₹ ${productPriceController.totalPrice.value.toStringAsFixed(1)}",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -159,7 +160,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   child: TextButton(
                     child: Text(
                       "Confirm Order",
-                      style: TextStyle(color: AppConstant.appTextColor),
+                      style:
+                          GoogleFonts.poppins(color: AppConstant.appTextColor),
                     ),
                     onPressed: () {
                       showCustomBottomSheet();
@@ -199,7 +201,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.0,
                       ),
-                      hintStyle: TextStyle(
+                      hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
                     ),
@@ -220,7 +222,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.0,
                       ),
-                      hintStyle: TextStyle(
+                      hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
                     ),
@@ -239,7 +241,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.0,
                       ),
-                      hintStyle: TextStyle(
+                      hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
                     ),
@@ -275,7 +277,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 },
                 child: Text(
                   "Place Order",
-                  style: TextStyle(color: Colors.white),
+                  style: GoogleFonts.poppins(color: Colors.white),
                 ),
               )
             ],

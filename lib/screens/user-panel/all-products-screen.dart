@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
 import 'product-deatils-screen.dart';
@@ -19,12 +20,12 @@ class AllProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: AppConstant.appTextColor,
+          color: AppConstant.appScendoryColor,
         ),
         backgroundColor: AppConstant.appMainColor,
         title: Text(
           'All Products',
-          style: TextStyle(color: AppConstant.appTextColor),
+          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
         ),
       ),
       body: FutureBuilder(
@@ -108,11 +109,11 @@ class AllProductsScreen extends StatelessWidget {
                                 productModel.productName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(fontSize: 12.0),
+                                style: GoogleFonts.poppins(fontSize: 12.0),
                               ),
                             ),
                             footer: Center(
-                              child: Text("PKR: " + productModel.fullPrice),
+                              child: Text("₹ " + productModel.fullPrice),
                             ),
                           ),
                         ),

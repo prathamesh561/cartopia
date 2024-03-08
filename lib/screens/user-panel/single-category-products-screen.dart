@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
 import 'product-deatils-screen.dart';
@@ -110,7 +111,7 @@ class _AllSingleCategoryProductsScreenState
                               child: Text(
                                 productModel.productName,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 12.0),
+                                style: GoogleFonts.poppins(fontSize: 12.0),
                               ),
                             ),
                           ),

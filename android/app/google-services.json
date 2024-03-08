@@ -12,7 +12,20 @@
           "package_name": "com.example.cartopia"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "583721058483-7eq3rf0j59ndjoa6so091k47m6nlipvv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cartopia",
+            "certificate_hash": "217b755e650eccaa94818f1833ac8d3a0d01d789"
+          }
+        },
+        {
+          "client_id": "583721058483-28n1cblbsu7lddkeci5ntrq66qojn8fl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyARETfOv2VRyEzB31gGLd7dRIzwe6lGiWQ"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583721058483-28n1cblbsu7lddkeci5ntrq66qojn8fl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "583721058483-al7l7b5m1u5jp2cm0i8hhrq5q1qk2jbn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cartopia"
+              }
+            }
+          ]
         }
       }
     }

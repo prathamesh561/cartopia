@@ -2,6 +2,7 @@
 
 import 'package:cartopia/utils/app-constant.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HeadingWidget extends StatelessWidget {
   final String headingTitle;
@@ -30,14 +31,14 @@ class HeadingWidget extends StatelessWidget {
               children: [
                 Text(
                   headingTitle,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     color: Colors.grey.shade800,
                   ),
                 ),
                 Text(
                   headingSubTitle,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
                     fontSize: 12.0,
                     color: Colors.grey,
@@ -59,7 +60,7 @@ class HeadingWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     buttonText,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
                         fontSize: 12.0,
                         color: AppConstant.appScendoryColor),

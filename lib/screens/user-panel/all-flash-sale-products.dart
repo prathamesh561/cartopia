@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 import '../../models/product-model.dart';
 import '../../utils/app-constant.dart';
@@ -107,7 +108,7 @@ class _AllFlashSaleProductScreenState extends State<AllFlashSaleProductScreen> {
                                 productModel.productName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(fontSize: 12.0),
+                                style: GoogleFonts.poppins(fontSize: 12.0),
                               ),
                             ),
                           ),

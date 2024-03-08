@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/cart-price-controller.dart';
 
 class AllOrdersScreen extends StatefulWidget {
@@ -92,7 +93,6 @@ class _AllOrdersScreenState extends State<AllOrdersScreen> {
                     color: AppConstant.appTextColor,
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundColor: AppConstant.appMainColor,
                         backgroundImage:
                             NetworkImage(orderModel.productImages[0]),
                       ),
@@ -106,12 +106,14 @@ class _AllOrdersScreenState extends State<AllOrdersScreen> {
                           ),
                           orderModel.status != true
                               ? Text(
-                                  "Pending..",
-                                  style: TextStyle(color: Colors.green),
+                                  "In Progress",
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.orange),
                                 )
                               : Text(
                                   "Deliverd",
-                                  style: TextStyle(color: Colors.red),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.green),
                                 )
                         ],
                       ),

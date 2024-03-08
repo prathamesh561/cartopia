@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/cart-model.dart';
@@ -29,11 +31,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: AppConstant.appTextColor),
+        iconTheme: IconThemeData(color: AppConstant.appScendoryColor),
         backgroundColor: AppConstant.appMainColor,
         title: Text(
           "Product Details",
-          style: TextStyle(color: AppConstant.appTextColor),
+          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
         ),
         actions: [
           GestureDetector(
@@ -116,10 +118,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             widget.productModel.isSale == true &&
                                     widget.productModel.salePrice != ''
                                 ? Text(
-                                    "PKR: " + widget.productModel.salePrice,
+                                    "₹  " + widget.productModel.salePrice,
                                   )
                                 : Text(
-                                    "PKR: " + widget.productModel.fullPrice,
+                                    "₹  " + widget.productModel.fullPrice,
                                   ),
                           ],
                         ),
@@ -159,7 +161,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               child: TextButton(
                                 child: Text(
                                   "WhatsApp",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       color: AppConstant.appTextColor),
                                 ),
                                 onPressed: () {
@@ -184,7 +186,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               child: TextButton(
                                 child: Text(
                                   "Add to cart",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       color: AppConstant.appTextColor),
                                 ),
                                 onPressed: () async {
@@ -211,9 +213,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   static Future<void> sendMessageOnWhatsApp({
     required ProductModel productModel,
   }) async {
-    final number = "+923075812354";
+    final number = "+918097543570";
     final message =
-        "Hello Techi4u \n i want to know about this product \n ${productModel.productName} \n ${productModel.productId}";
+        "Hello Cartopia \n i want to know about this product \n ${productModel.productName} \n ${productModel.productId}";
 
     final url = 'https://wa.me/$number?text=${Uri.encodeComponent(message)}';
 

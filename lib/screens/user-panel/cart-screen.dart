@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/cart-price-controller.dart';
 import 'checkout-screen.dart';
@@ -190,8 +191,8 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Obx(
               () => Text(
-                " Total ${productPriceController.totalPrice.value.toStringAsFixed(1)} : PKR",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                " Total  ₹ ${productPriceController.totalPrice.value.toStringAsFixed(1)}",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -207,7 +208,8 @@ class _CartScreenState extends State<CartScreen> {
                   child: TextButton(
                     child: Text(
                       "Checkout",
-                      style: TextStyle(color: AppConstant.appTextColor),
+                      style:
+                          GoogleFonts.poppins(color: AppConstant.appTextColor),
                     ),
                     onPressed: () {
                       Get.to(() => CheckOutScreen());

@@ -91,7 +91,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   child: TextButton(
                     child: Text(
                       "Forget",
-                      style: TextStyle(color: AppConstant.appTextColor),
+                      style:
+                          GoogleFonts.poppins(color: AppConstant.appTextColor),
                     ),
                     onPressed: () async {
                       String email = userEmail.text.trim();

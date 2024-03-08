@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
 import '../../models/categories-model.dart';
@@ -25,12 +26,12 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: AppConstant.appTextColor,
+          color: AppConstant.appScendoryColor,
         ),
         backgroundColor: AppConstant.appMainColor,
         title: Text(
           "All Categories",
-          style: TextStyle(color: AppConstant.appTextColor),
+          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
         ),
       ),
       body: FutureBuilder(
@@ -94,7 +95,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                             title: Center(
                               child: Text(
                                 categoriesModel.categoryName,
-                                style: TextStyle(fontSize: 12.0),
+                                style: GoogleFonts.poppins(fontSize: 12.0),
                               ),
                             ),
                           ),

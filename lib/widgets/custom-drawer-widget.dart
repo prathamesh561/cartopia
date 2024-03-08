@@ -5,6 +5,7 @@ import 'package:cartopia/utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../screens/auth-ui/welcome-screen.dart';
@@ -37,19 +38,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               child: ListTile(
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
-                  "Waris",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  "Cartopia",
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 subtitle: Text(
-                  "Version 1.0.1",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  "Version 1.0.0",
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: CircleAvatar(
                   radius: 22.0,
                   backgroundColor: AppConstant.appMainColor,
                   child: Text(
-                    "W",
-                    style: TextStyle(color: AppConstant.appTextColor),
+                    "C",
+                    style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                   ),
                 ),
               ),
@@ -66,7 +67,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Home",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: Icon(
                   Icons.home,
@@ -84,7 +85,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Products",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: Icon(
                   Icons.production_quantity_limits,
@@ -102,7 +103,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Orders",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: Icon(
                   Icons.shopping_bag,
@@ -124,7 +125,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Contact",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: Icon(
                   Icons.help,
@@ -149,7 +150,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Logout",
-                  style: TextStyle(color: AppConstant.appTextColor),
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
                 ),
                 leading: Icon(
                   Icons.logout,

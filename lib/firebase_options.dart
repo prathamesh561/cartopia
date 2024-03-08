@@ -60,6 +60,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '583721058483',
     projectId: 'cartopia-a1250',
     storageBucket: 'cartopia-a1250.appspot.com',
+    androidClientId: '583721058483-7eq3rf0j59ndjoa6so091k47m6nlipvv.apps.googleusercontent.com',
+    iosClientId: '583721058483-al7l7b5m1u5jp2cm0i8hhrq5q1qk2jbn.apps.googleusercontent.com',
     iosBundleId: 'com.example.cartopia',
   );
 
@@ -69,6 +71,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '583721058483',
     projectId: 'cartopia-a1250',
     storageBucket: 'cartopia-a1250.appspot.com',
+    androidClientId: '583721058483-7eq3rf0j59ndjoa6so091k47m6nlipvv.apps.googleusercontent.com',
+    iosClientId: '583721058483-j1ko2s8n1pql3l2g364a7ct1shfj4erf.apps.googleusercontent.com',
     iosBundleId: 'com.example.cartopia.RunnerTests',
   );
 }
