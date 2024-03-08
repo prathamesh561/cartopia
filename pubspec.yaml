@@ -52,7 +52,6 @@ dependencies:
   google_fonts: ^6.1.0
   firebase_analytics: ^10.8.0
   firebase_crashlytics: ^3.4.9
-  share_plus: ^7.2.1
 
 
 dev_dependencies:
