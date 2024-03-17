@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cartopia/models/product-model.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -27,9 +28,8 @@ class _AllSingleCategoryProductsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppConstant.appMainColor,
-        title: Text('Products'),
+      appBar: AppBarWidget(
+        title: 'Products',
       ),
       body: FutureBuilder(
         future: FirebaseFirestore.instance
@@ -77,9 +77,12 @@ class _AllSingleCategoryProductsScreenState
                   categoryName: productData['categoryName'],
                   salePrice: productData['salePrice'],
                   fullPrice: productData['fullPrice'],
+                  amazonPrice: productData['amazonPrice'],
+                  flipkartPrice: productData['flipkartPrice'],
                   productImages: productData['productImages'],
                   deliveryTime: productData['deliveryTime'],
                   isSale: productData['isSale'],
+                  isWishlist: productData['isWishlist'],
                   productDescription: productData['productDescription'],
                   createdAt: productData['createdAt'],
                   updatedAt: productData['updatedAt'],

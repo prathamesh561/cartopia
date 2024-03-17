@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cartopia/models/product-model.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,185 +27,222 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+  late bool isWishlist;
+
+  @override
+  void initState() {
+    isWishlist = widget.productModel.isWishlist;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: AppConstant.appScendoryColor),
-        backgroundColor: AppConstant.appMainColor,
-        title: Text(
-          "Product Details",
-          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () => Get.to(() => CartScreen()),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.shopping_cart,
+      appBar: AppBarWidget(title: "Product Details"),
+      body: Stack(
+        children: [
+          Container(
+            color: AppConstant.appScendoryColor,
+          ),
+          Container(
+            height: Get.height - 180,
+            decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20))),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  //product images
+
+                  SizedBox(
+                    height: Get.height / 60,
+                  ),
+                  CarouselSlider(
+                    items: widget.productModel.productImages
+                        .map(
+                          (imageUrls) => ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: CachedNetworkImage(
+                              imageUrl: imageUrls,
+                              fit: BoxFit.cover,
+                              width: Get.width - 10,
+                              height: Get.height / 2,
+                              placeholder: (context, url) => ColoredBox(
+                                color: Colors.white,
+                                child: Center(
+                                  child: CupertinoActivityIndicator(),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    options: CarouselOptions(
+                      scrollDirection: Axis.horizontal,
+                      autoPlay: true,
+                      aspectRatio: 0.8,
+                      viewportFraction: 1,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  widget.productModel.productName,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                CircleAvatar(
+                                  backgroundColor:
+                                      Colors.white.withOpacity(0.8),
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        await FirebaseFirestore.instance
+                                            .collection('products')
+                                            .doc(widget.productModel.productId)
+                                            .update({
+                                          'isWishlist':
+                                              isWishlist ? false : true
+                                        });
+                                        setState(() {
+                                          isWishlist = !isWishlist;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        isWishlist
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        color: Colors.red,
+                                      )),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Row(
+                              children: [
+                                widget.productModel.isSale == true &&
+                                        widget.productModel.salePrice != ''
+                                    ? Text(
+                                        "Price: ₹  " +
+                                            widget.productModel.salePrice,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20,
+                                            color: AppConstant.appScendoryColor,
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    : Text(
+                                        "Price: ₹  " +
+                                            widget.productModel.fullPrice,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20,
+                                            color: AppConstant.appScendoryColor,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Category: " + widget.productModel.categoryName,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              widget.productModel.productDescription,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 13, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
           ),
+          Positioned(
+            top: Get.height - 150,
+            left: Get.width / 8,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              width: Get.width - 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.blue[100]),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton.icon(
+                    icon: Icon(
+                      Icons.chat,
+                      color: AppConstant.appScendoryColor,
+                    ),
+                    label: Text(
+                      "Chat",
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: AppConstant.appScendoryColor),
+                    ),
+                    onPressed: () {
+                      sendMessageOnWhatsApp(
+                        productModel: widget.productModel,
+                      );
+                    },
+                  ),
+                  TextButton.icon(
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      color: AppConstant.appScendoryColor,
+                    ),
+                    label: Text(
+                      "Add to cart",
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: AppConstant.appScendoryColor),
+                    ),
+                    onPressed: () async {
+                      // Get.to(() => SignInScreen());
+
+                      await checkProductExistence(uId: user!.uid);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            //product images
-
-            SizedBox(
-              height: Get.height / 60,
-            ),
-            CarouselSlider(
-              items: widget.productModel.productImages
-                  .map(
-                    (imageUrls) => ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: CachedNetworkImage(
-                        imageUrl: imageUrls,
-                        fit: BoxFit.cover,
-                        width: Get.width - 10,
-                        placeholder: (context, url) => ColoredBox(
-                          color: Colors.white,
-                          child: Center(
-                            child: CupertinoActivityIndicator(),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
-                  )
-                  .toList(),
-              options: CarouselOptions(
-                scrollDirection: Axis.horizontal,
-                autoPlay: true,
-                aspectRatio: 2.5,
-                viewportFraction: 1,
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Card(
-                elevation: 5.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              widget.productModel.productName,
-                            ),
-                            Icon(Icons.favorite_outline)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          children: [
-                            widget.productModel.isSale == true &&
-                                    widget.productModel.salePrice != ''
-                                ? Text(
-                                    "₹  " + widget.productModel.salePrice,
-                                  )
-                                : Text(
-                                    "₹  " + widget.productModel.fullPrice,
-                                  ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Category: " + widget.productModel.categoryName,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.productModel.productDescription,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Material(
-                            child: Container(
-                              width: Get.width / 3.0,
-                              height: Get.height / 16,
-                              decoration: BoxDecoration(
-                                color: AppConstant.appScendoryColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: TextButton(
-                                child: Text(
-                                  "WhatsApp",
-                                  style: GoogleFonts.poppins(
-                                      color: AppConstant.appTextColor),
-                                ),
-                                onPressed: () {
-                                  sendMessageOnWhatsApp(
-                                    productModel: widget.productModel,
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Material(
-                            child: Container(
-                              width: Get.width / 3.0,
-                              height: Get.height / 16,
-                              decoration: BoxDecoration(
-                                color: AppConstant.appScendoryColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: TextButton(
-                                child: Text(
-                                  "Add to cart",
-                                  style: GoogleFonts.poppins(
-                                      color: AppConstant.appTextColor),
-                                ),
-                                onPressed: () async {
-                                  // Get.to(() => SignInScreen());
-
-                                  await checkProductExistence(uId: user!.uid);
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

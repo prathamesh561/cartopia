@@ -71,7 +71,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
 
   List<Widget> _buildActions(BuildContext context) {
     return <Widget>[
-      widget.title == "Main Screen"
+      widget.title == "Main Screen" || widget.title == "Product Details"
           ? GestureDetector(
               onTap: () => Get.to(() => const CartScreen()),
               child: const Padding(

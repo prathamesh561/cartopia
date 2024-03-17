@@ -1,6 +1,10 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, no_leading_underscores_for_local_identifiers
 
 import 'package:cartopia/screens/user-panel/all-orders-screen.dart';
+import 'package:cartopia/screens/user-panel/all-products-screen.dart';
+import 'package:cartopia/screens/user-panel/all-wishlist-screen.dart';
+import 'package:cartopia/screens/user-panel/product-comparision-screen.dart';
+import 'package:cartopia/screens/user-panel/profile-screen.dart';
 import 'package:cartopia/utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +99,54 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   Icons.arrow_forward,
                   color: AppConstant.appTextColor,
                 ),
+                onTap: () {
+                  Get.back();
+                  Get.to(() => AllProductsScreen());
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ListTile(
+                titleAlignment: ListTileTitleAlignment.center,
+                title: Text(
+                  "Compare",
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
+                ),
+                leading: Icon(
+                  Icons.compare_arrows_rounded,
+                  color: AppConstant.appTextColor,
+                ),
+                trailing: Icon(
+                  Icons.arrow_forward,
+                  color: AppConstant.appTextColor,
+                ),
+                onTap: () {
+                  Get.back();
+                  Get.to(() => ProductCompareScreen());
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ListTile(
+                titleAlignment: ListTileTitleAlignment.center,
+                title: Text(
+                  "Wishlist",
+                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
+                ),
+                leading: Icon(
+                  Icons.favorite_outline,
+                  color: AppConstant.appTextColor,
+                ),
+                trailing: Icon(
+                  Icons.arrow_forward,
+                  color: AppConstant.appTextColor,
+                ),
+                onTap: () {
+                  Get.back();
+                  Get.to(() => AllWishlistScreen());
+                },
               ),
             ),
             Padding(
@@ -119,24 +171,28 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ListTile(
-                titleAlignment: ListTileTitleAlignment.center,
-                title: Text(
-                  "Contact",
-                  style: GoogleFonts.poppins(color: AppConstant.appTextColor),
-                ),
-                leading: Icon(
-                  Icons.help,
-                  color: AppConstant.appTextColor,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward,
-                  color: AppConstant.appTextColor,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            //   child: ListTile(
+            //     titleAlignment: ListTileTitleAlignment.center,
+            //     title: Text(
+            //       "Profile",
+            //       style: GoogleFonts.poppins(color: AppConstant.appTextColor),
+            //     ),
+            //     leading: Icon(
+            //       Icons.person_outline_rounded,
+            //       color: AppConstant.appTextColor,
+            //     ),
+            //     trailing: Icon(
+            //       Icons.arrow_forward,
+            //       color: AppConstant.appTextColor,
+            //     ),
+            //     onTap: () {
+            //       Get.back();
+            //       Get.to(() => ProfileScreen());
+            //     },
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(

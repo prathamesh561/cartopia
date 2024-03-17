@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 import '../../models/product-model.dart';
-import '../../utils/app-constant.dart';
 import 'product-deatils-screen.dart';
 
 class AllFlashSaleProductScreen extends StatefulWidget {
@@ -23,9 +23,8 @@ class _AllFlashSaleProductScreenState extends State<AllFlashSaleProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppConstant.appMainColor,
-        title: Text("All Flash Sale Products"),
+      appBar: AppBarWidget(
+        title: "All Flash Sale Products",
       ),
       body: FutureBuilder(
         future: FirebaseFirestore.instance
@@ -73,9 +72,12 @@ class _AllFlashSaleProductScreenState extends State<AllFlashSaleProductScreen> {
                   categoryName: productData['categoryName'],
                   salePrice: productData['salePrice'],
                   fullPrice: productData['fullPrice'],
+                  amazonPrice: productData['amazonPrice'],
+                  flipkartPrice: productData['flipkartPrice'],
                   productImages: productData['productImages'],
                   deliveryTime: productData['deliveryTime'],
                   isSale: productData['isSale'],
+                  isWishlist: productData['isWishlist'],
                   productDescription: productData['productDescription'],
                   createdAt: productData['createdAt'],
                   updatedAt: productData['updatedAt'],

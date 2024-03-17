@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_print
 import 'package:cartopia/models/order-model.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,9 +24,8 @@ class _AllOrdersScreenState extends State<AllOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppConstant.appMainColor,
-        title: Text('All Orders'),
+      appBar: AppBarWidget(
+        title: 'All Orders',
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -90,30 +90,49 @@ class _AllOrdersScreenState extends State<AllOrdersScreen> {
                   productPriceController.fetchProductPrice();
                   return Card(
                     elevation: 5,
-                    color: AppConstant.appTextColor,
+                    color: Colors.grey[100],
                     child: ListTile(
                       leading: CircleAvatar(
+                        maxRadius: 30,
                         backgroundImage:
                             NetworkImage(orderModel.productImages[0]),
                       ),
-                      title: Text(orderModel.productName),
+                      title: Text(
+                        orderModel.productName,
+                        style: GoogleFonts.poppins(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
                       subtitle: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(orderModel.productTotalPrice.toString()),
+                          Expanded(
+                            child: Text(
+                              orderModel.productTotalPrice.toString(),
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
+                          ),
                           SizedBox(
                             width: 10.0,
                           ),
                           orderModel.status != true
-                              ? Text(
-                                  "In Progress",
-                                  style:
-                                      GoogleFonts.poppins(color: Colors.orange),
+                              ? Chip(
+                                  label: Text(
+                                    "In Progress",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.orange),
+                                  ),
                                 )
-                              : Text(
-                                  "Deliverd",
-                                  style:
-                                      GoogleFonts.poppins(color: Colors.green),
+                              : Chip(
+                                  label: Text(
+                                    "Deliverd",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.green),
+                                  ),
                                 )
                         ],
                       ),

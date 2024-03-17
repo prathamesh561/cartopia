@@ -1,9 +1,10 @@
-// ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
+// ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, prefer_interpolation_to_compose_strings
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cartopia/models/cart-model.dart';
 import 'package:cartopia/models/product-model.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,53 +13,61 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
-import '../screens/user-panel/product-deatils-screen.dart';
+import 'product-deatils-screen.dart';
 
-class FlashSaleWidget extends StatefulWidget {
-  const FlashSaleWidget({super.key});
+class AllWishlistScreen extends StatefulWidget {
+  const AllWishlistScreen({super.key});
 
   @override
-  State<FlashSaleWidget> createState() => _FlashSaleWidgetState();
+  State<AllWishlistScreen> createState() => _AllWishlistScreenState();
 }
 
-class _FlashSaleWidgetState extends State<FlashSaleWidget> {
+class _AllWishlistScreenState extends State<AllWishlistScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+    return Scaffold(
+      appBar: AppBarWidget(
+        title: 'Wishlist Products',
+      ),
+      body: FutureBuilder(
+        future: FirebaseFirestore.instance
+            .collection('products')
+            .where('isWishlist', isEqualTo: true)
+            .get(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              height: Get.height / 5,
+              child: Center(
+                child: CupertinoActivityIndicator(),
+              ),
+            );
+          }
 
-    return FutureBuilder(
-      future: FirebaseFirestore.instance
-          .collection('products')
-          .where('isSale', isEqualTo: true)
-          .get(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text("Error"),
-          );
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            height: Get.height / 5,
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          );
-        }
+          if (snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text("No products found!"),
+            );
+          }
 
-        if (snapshot.data!.docs.isEmpty) {
-          return Center(
-            child: Text("No products found!"),
-          );
-        }
-
-        if (snapshot.data != null) {
-          return Container(
-            height: Get.height / 3,
-            child: ListView.builder(
+          if (snapshot.data != null) {
+            return GridView.builder(
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+                childAspectRatio: 0.7,
+              ),
               itemBuilder: (context, index) {
                 final productData = snapshot.data!.docs[index];
                 ProductModel productModel = ProductModel(
@@ -78,6 +87,7 @@ class _FlashSaleWidgetState extends State<FlashSaleWidget> {
                   createdAt: productData['createdAt'],
                   updatedAt: productData['updatedAt'],
                 );
+
                 // CategoriesModel categoriesModel = CategoriesModel(
                 //   categoryId: snapshot.data!.docs[index]['categoryId'],
                 //   categoryImg: snapshot.data!.docs[index]['categoryImg'],
@@ -86,51 +96,34 @@ class _FlashSaleWidgetState extends State<FlashSaleWidget> {
                 //   updatedAt: snapshot.data!.docs[index]['updatedAt'],
                 // );
                 bool isWishlist = productModel.isWishlist;
+
                 return Row(
                   children: [
                     GestureDetector(
                       onTap: () => Get.to(() =>
                           ProductDetailsScreen(productModel: productModel)),
                       child: Padding(
-                        padding: EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Container(
                           child: Stack(
                             children: [
                               FillImageCard(
-                                borderRadius: 12,
-                                color: Colors.grey.withOpacity(0.1),
+                                borderRadius: 20.0,
                                 width: Get.width / 2.3,
                                 heightImage: Get.height / 6,
                                 imageProvider: CachedNetworkImageProvider(
                                   productModel.productImages[0],
                                 ),
-                                title: Text(
-                                  productModel.productName,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400),
+                                title: Center(
+                                  child: Text(
+                                    productModel.productName,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: GoogleFonts.poppins(fontSize: 12.0),
+                                  ),
                                 ),
-                                description: Row(
-                                  children: [
-                                    Text(
-                                      "₹  ${productModel.salePrice}",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    SizedBox(
-                                      width: 2.0,
-                                    ),
-                                    Text(
-                                      "${productModel.fullPrice}",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        color: AppConstant.appScendoryColor,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                  ],
+                                description: Center(
+                                  child: Text("₹ " + productModel.fullPrice),
                                 ),
                                 footer: Center(
                                   child: ElevatedButton(
@@ -185,12 +178,12 @@ class _FlashSaleWidgetState extends State<FlashSaleWidget> {
                   ],
                 );
               },
-            ),
-          );
-        }
+            );
+          }
 
-        return Container();
-      },
+          return Container();
+        },
+      ),
     );
   }
 

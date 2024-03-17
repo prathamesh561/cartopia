@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_print
 import 'package:cartopia/models/cart-model.dart';
 import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,9 +27,8 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppConstant.appMainColor,
-        title: Text('Cart Screen'),
+      appBar: AppBarWidget(
+        title: 'Cart Screen',
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -106,18 +106,28 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                     child: Card(
                       elevation: 5,
-                      color: AppConstant.appTextColor,
+                      color: Colors.grey[100],
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundColor: AppConstant.appMainColor,
+                          maxRadius: 30,
                           backgroundImage:
                               NetworkImage(cartModel.productImages[0]),
                         ),
-                        title: Text(cartModel.productName),
+                        title: Text(
+                          cartModel.productName,
+                          style: GoogleFonts.poppins(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
                         subtitle: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(cartModel.productTotalPrice.toString()),
+                            Expanded(
+                                child: Text(
+                              cartModel.productTotalPrice.toString(),
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            )),
                             SizedBox(
                               width: Get.width / 20.0,
                             ),
@@ -140,8 +150,12 @@ class _CartScreenState extends State<CartScreen> {
                               },
                               child: CircleAvatar(
                                 radius: 14.0,
-                                backgroundColor: AppConstant.appMainColor,
-                                child: Text('-'),
+                                backgroundColor: AppConstant.appScendoryColor,
+                                child: Text(
+                                  '-',
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -167,8 +181,12 @@ class _CartScreenState extends State<CartScreen> {
                               },
                               child: CircleAvatar(
                                 radius: 14.0,
-                                backgroundColor: AppConstant.appMainColor,
-                                child: Text('+'),
+                                backgroundColor: AppConstant.appScendoryColor,
+                                child: Text(
+                                  '+',
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
+                                ),
                               ),
                             )
                           ],

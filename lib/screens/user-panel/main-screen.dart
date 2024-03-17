@@ -40,9 +40,8 @@ class MainScreen extends StatelessWidget {
               //heading
               HeadingWidget(
                 headingTitle: "Categories",
-                headingSubTitle: "According to your budget",
+                headingSubTitle: "According to your prefrences",
                 onTap: () => Get.to(() => AllCategoriesScreen()),
-                buttonText: "See More >",
               ),
 
               CategoriesWidget(),
@@ -50,9 +49,8 @@ class MainScreen extends StatelessWidget {
               //heading
               HeadingWidget(
                 headingTitle: "Flash Sale",
-                headingSubTitle: "According to your budget",
+                headingSubTitle: "According to your prefrences",
                 onTap: () => Get.to(() => AllFlashSaleProductScreen()),
-                buttonText: "See More >",
               ),
 
               FlashSaleWidget(),
@@ -60,9 +58,8 @@ class MainScreen extends StatelessWidget {
               //heading
               HeadingWidget(
                 headingTitle: "All Products",
-                headingSubTitle: "According to your budget",
+                headingSubTitle: "According to your prefrences",
                 onTap: () => Get.to(() => AllProductsScreen()),
-                buttonText: "See More >",
               ),
 
               AllProductsWidget(),

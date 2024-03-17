@@ -2,7 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cartopia/screens/user-panel/single-category-products-screen.dart';
-import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -24,16 +24,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: AppConstant.appScendoryColor,
-        ),
-        backgroundColor: AppConstant.appMainColor,
-        title: Text(
-          "All Categories",
-          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
-        ),
-      ),
+      appBar: AppBarWidget(title: "All Categories"),
       body: FutureBuilder(
         future: FirebaseFirestore.instance.collection('categories').get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

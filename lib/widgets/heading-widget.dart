@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:cartopia/utils/app-constant.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,13 +7,11 @@ class HeadingWidget extends StatelessWidget {
   final String headingTitle;
   final String headingSubTitle;
   final VoidCallback onTap;
-  final String buttonText;
   const HeadingWidget({
     super.key,
     required this.headingTitle,
     required this.headingSubTitle,
     required this.onTap,
-    required this.buttonText,
   });
 
   @override
@@ -32,6 +29,7 @@ class HeadingWidget extends StatelessWidget {
                 Text(
                   headingTitle,
                   style: GoogleFonts.poppins(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey.shade800,
                   ),
@@ -40,34 +38,18 @@ class HeadingWidget extends StatelessWidget {
                   headingSubTitle,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: onTap,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  border: Border.all(
-                    color: AppConstant.appScendoryColor,
-                    width: 1.5,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    buttonText,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.0,
-                        color: AppConstant.appScendoryColor),
-                  ),
-                ),
-              ),
-            ),
+            IconButton(
+                onPressed: onTap,
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 18,
+                )),
           ],
         ),
       ),

@@ -2,7 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cartopia/models/product-model.dart';
-import 'package:cartopia/utils/app-constant.dart';
+import 'package:cartopia/widgets/app_bar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +18,8 @@ class AllProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: AppConstant.appScendoryColor,
-        ),
-        backgroundColor: AppConstant.appMainColor,
-        title: Text(
-          'All Products',
-          style: GoogleFonts.poppins(color: AppConstant.appScendoryColor),
-        ),
+      appBar: AppBarWidget(
+        title: 'All Products',
       ),
       body: FutureBuilder(
         future: FirebaseFirestore.instance
@@ -74,9 +67,12 @@ class AllProductsScreen extends StatelessWidget {
                   categoryName: productData['categoryName'],
                   salePrice: productData['salePrice'],
                   fullPrice: productData['fullPrice'],
+                  amazonPrice: productData['amazonPrice'],
+                  flipkartPrice: productData['flipkartPrice'],
                   productImages: productData['productImages'],
                   deliveryTime: productData['deliveryTime'],
                   isSale: productData['isSale'],
+                  isWishlist: productData['isWishlist'],
                   productDescription: productData['productDescription'],
                   createdAt: productData['createdAt'],
                   updatedAt: productData['updatedAt'],
